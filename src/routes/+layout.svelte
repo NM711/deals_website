@@ -1,0 +1,22 @@
+<script>
+    import "../app.css";
+    import Nav from '$lib/nav.svelte'
+</script>
+
+<Nav
+textOrLogo="Deal Gatherer"
+navFont="font-General-Sans"
+itemHref1="/"
+/>
+
+<section class="grid grid-cols-4 gap-1">
+    <slot/>
+</section>
+
+<style>
+    :global(html){
+		background: #232526; /* fallback for old browsers */
+  		background: -webkit-linear-gradient(to right, #232526, #414345); /* Chrome 10-25, Safari 5.1-6 */
+  		background: linear-gradient(to right, #232526, #414345); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+</style>
