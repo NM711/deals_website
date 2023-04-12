@@ -12,16 +12,19 @@
     <h2 class="text-3xl text-white my-5">Page Number {index}</h2>
 </header>
 <!-- prods go here when loaded dynamically -->
-{#each data as {brand, productName, productImage, currentProductPrice}}
+{#each data as {brand, productName, productImage, originalProductPrice, currentProductPrice}}
     <ProdCard
     {brand}
     {productName}
     {productImage}
+    {originalProductPrice}
     {currentProductPrice}
     />
 {/each}
 
 <span class="col-span-4 flex justify-center my-3">
+    
+    {#if parseInt(index) - 1 !== -1}
     <span class="mx-3">
         <Button
         buttonType="ghost"
@@ -31,6 +34,7 @@
         on:click={() => goto(`/deals?index=${parseInt(index) - 1}`)}
         />
     </span>
+    {/if}
 
     <span class="mx-3">
         <Button

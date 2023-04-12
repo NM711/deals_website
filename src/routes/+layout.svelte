@@ -9,7 +9,7 @@ navFont="font-General-Sans"
 itemHref1="/"
 />
 
-<section class="grid grid-cols-4 gap-1">
+<section class="grid grid-cols-4 gap-3">
     <slot/>
 </section>
 
