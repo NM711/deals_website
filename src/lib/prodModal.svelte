@@ -1,4 +1,5 @@
 <script>
+    import { goto } from "$app/navigation"
     import Button from "$lib/buttons/button.svelte"
     export let isHidden = true
     export let productName;
@@ -6,12 +7,13 @@
     export let currentProductPrice;
     export let productImage;
     export let brand;
+    export let linkToProduct;
 </script>
 {#if isHidden}
 <div class="flex justify-center items-center bg-black bg-opacity-75 {isHidden} w-full h-full fixed inset-0 z-10 my-16">
     <div class="prodModal flex flex-col justify-center bg-Matte-Black w-[75vw] h-fit rounded-md">
-        <button on:click={() => isHidden = !isHidden} class="flex justify-end text-3xl text-Snow hover:text-yellow-500 duration-150 ease-in-out cursor-pointer p-1">
-            <ion-icon name="close-sharp"></ion-icon>
+        <button on:click={() => isHidden = !isHidden} class="flex justify-end text-Snow hover:text-yellow-500 duration-150 ease-in-out cursor-pointer p-1">
+            <ion-icon class="text-3xl" name="close-sharp"></ion-icon>
         </button>
         <header class="text-center font-General-Sans my-3">
             <h2 class="text-2xl text-Snow">{productName}</h2>
@@ -24,6 +26,7 @@
             <Button
             buttonText="See Product"
             buttonSize="fit"
+            on:click={() => goto(linkToProduct)} 
             /> 
         </span>
     </div>

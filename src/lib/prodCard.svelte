@@ -5,6 +5,7 @@
     export let brand;
     export let currentProductPrice;
     export let originalProductPrice;
+    export let linkToProduct;
     let isHidden = false
     function cardClick(){
         isHidden = !isHidden
@@ -31,5 +32,6 @@
     {originalProductPrice}
     {currentProductPrice}
     {productImage}
+    {linkToProduct}
     />
 {/if}
