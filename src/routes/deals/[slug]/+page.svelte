@@ -7,11 +7,22 @@
     // let headerSlug = slug.split('')[0].toUpperCase()
 </script>
 
-<header class="col-span-4 my-36 text-center font-General-Sans">
+<header class="col-span-4 mt-36 text-center font-General-Sans">
     <h1 class="md:text-6xl text-5xl text-yellow-500">Deals</h1>
     <h2 class="text-3xl text-white my-5">{slug.toUpperCase()}</h2>
     <h2 class="text-3xl text-white my-5">Page Number {index}</h2>
 </header>
+
+<section class="bg-black col-span-4 p-3">
+    <h2 class="text-Snow md:text-4xl text-3xl text-center font-General-Sans">Filters</h2>
+    <ul class="flex justify-center items-center text-Snow text-xl font-Gambetta text-center my-5">
+        <li class="mx-3">Filter 2</li>
+        <li class="mx-3">Filter 1</li>
+        <li class="mx-3">Filter 3</li>
+        <li class="mx-3">Filter 4</li>
+        <li class="mx-3">Filter 5</li>
+    </ul>
+</section>
 <!-- prods go here when loaded dynamically -->
 {#each data as {brand, productName, productImage, originalProductPrice, currentProductPrice, linkToProduct}}
     <ProdCard
