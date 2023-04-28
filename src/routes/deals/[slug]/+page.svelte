@@ -1,61 +1,79 @@
 <script>
-    import ProdCard from '$lib/prodCard.svelte';
-    import Button from '$lib/buttons/button.svelte'
-    import { goto } from '$app/navigation'
-    export let data;
-    $: ({ data, index, slug } = data)
-    // let headerSlug = slug.split('')[0].toUpperCase()
+  import ProdCard from "$lib/prodCard.svelte";
+  import Button from "$lib/buttons/button.svelte";
+  import { goto } from "$app/navigation";
+  import Dropdown from "$lib/buttons/dropdown.svelte";
+  export let data;
+  $: ({ data, index, slug, brand } = data);
+
+  let endReached = false;
+
+  $: {
+    if (data.length === 0) {
+      endReached = true;
+    } else endReached = false;
+  }
 </script>
 
-<header class="col-span-4 mt-36 text-center font-General-Sans">
-    <h1 class="md:text-6xl text-5xl text-yellow-500">Deals</h1>
-    <h2 class="text-3xl text-white my-5">{slug.toUpperCase()}</h2>
-    <h2 class="text-3xl text-white my-5">Page Number {index}</h2>
+<header class="col-span-4 mt-36 text-center font-Expose bg-Onyx-Color p-3">
+  <h1 class="md:text-6xl text-5xl text-yellow-500">{slug.toUpperCase()}</h1>
+  <h2 class="text-2xl text-white my-5 font-Bespoke">Page Number {index}</h2>
 </header>
 
 <section class="bg-black col-span-4 p-3">
-    <h2 class="text-Snow md:text-4xl text-3xl text-center font-General-Sans">Filters</h2>
-    <ul class="flex justify-center items-center text-Snow text-xl font-Gambetta text-center my-5">
-        <li class="mx-3">Filter 2</li>
-        <li class="mx-3">Filter 1</li>
-        <li class="mx-3">Filter 3</li>
-        <li class="mx-3">Filter 4</li>
-        <li class="mx-3">Filter 5</li>
-    </ul>
+  <h2 class="text-Snow md:text-4xl text-3xl text-center font-Expose">
+    Filters
+  </h2>
+
+  <div class="flex justify-center items-center">
+    <Dropdown
+      labelTitle="Brands/Stores"
+      first="HP"
+      second="Acer"
+      third="Lenovo"
+      fourth="Newegg"
+      on:change={(ev) => goto(`?index=${index}&brand=${ev.target.value}`)}
+    />
+  </div>
 </section>
 <!-- prods go here when loaded dynamically -->
-{#each data as {brand, productName, productImage, originalProductPrice, currentProductPrice, linkToProduct}}
-    <ProdCard
+
+{#if endReached}
+  <h2 class="col-span-4 text-center text-Snow font-Expose md:text-5xl text-4xl">There are no more products!</h2>
+{/if}
+
+{#each data as { brand, productName, productImage, originalProductPrice, currentProductPrice, linkToProduct }}
+  <ProdCard
     {brand}
     {productName}
     {productImage}
     {originalProductPrice}
     {currentProductPrice}
     {linkToProduct}
-    />
+  />
 {/each}
 
 <span class="col-span-4 flex justify-center my-3">
-    
-    {#if index - 1 !== -1}
+  {#if index - 1 !== -1}
     <span class="mx-3">
-        <Button
+      <Button
         buttonType="ghost"
         buttonText="Previous Page {index - 1}"
-        buttonFont="font-General-Sans"
+        buttonFont="font-Bespoke"
         buttonSize="fit"
-        on:click={() => goto(`?index=${index - 1}`)}
-        />
+        on:click={() => goto(`?index=${index - 1}&brand=${brand}`)}
+      />
     </span>
-    {/if}
-
+  {/if}
+  {#if !endReached}
     <span class="mx-3">
-        <Button
+      <Button
         buttonType="ghost"
         buttonText="Next Page {index + 1}"
-        buttonFont="font-General-Sans"
+        buttonFont="font-Bespoke"
         buttonSize="fit"
-        on:click={() => goto(`?index=${index + 1}`)}
-        />
+        on:click={() => goto(`?index=${index + 1}&brand=${brand}`)}
+      />
     </span>
+  {/if}
 </span>

@@ -9,8 +9,8 @@ export default {
         "Onyx-Color": "#0F0F0F"
       },
       fontFamily: {
-        "Gambetta": "'Gambetta', serif",
-        "General-Sans": "'General Sans'"
+        "Bespoke": "'Bespoke Sans', sans-serif",
+        "Expose":"'Expose', sans-serif"
       }
 
     },
