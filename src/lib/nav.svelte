@@ -1,10 +1,11 @@
 <script>
   //  this navbars code is kinda ass redo later on if necessary
+  import { goto } from '$app/navigation'
   import Input from "./textBoxes/input.svelte";
   $: value = "";
   function keyDownEv(ev) {
-    if (ev.key === "Enter") {
-      console.log(value);
+      if (ev.key === "Enter") {
+          goto(`/deals/all?index=0&brand=any&s=${value || ""}`)
     }
   }
   // export let keydownFunc;
@@ -53,7 +54,7 @@
       {textOrLogo}
     </span>
 
-    <div class="md:hidden block">
+    <div class="md:hidden block z-20">
       <button
         on:click={toggleMenu}
         id="menu-btn"
@@ -65,67 +66,125 @@
       </button>
     </div>
 
-    <ul
-      class="md:inline-flex block md:static fixed right-0 top-16 md:h-fit md:w-fit h-screen w-[75vw] md:text-2xl text-3xl text-center {navBg} bg-opacity-75 {navListTranslateClasses}"
-    >
-      <li class="md:mx-3 md:px-3 md:py-0 py-3">
+    <div id="sm-nav" class="overflow-scroll md:hidden flex flex-col items-baseline fixed top-0 right-0 px-5 h-screen w-screen text-xl text-left {navBg} {navListTranslateClasses}">
+      <ul>
+      <li class="text-3xl py-3 text-yellow-500">Menu</li>
+      <li class="py-2">
         <a
           class="hover:text-yellow-500 duration-150 ease-in-out"
           href={itemHref1}>{itemName1}</a
         >
       </li>
-      <li class="md:mx-3 md:px-3 md:py-0 py-3">
+      <li class="py-2">
         <a
           class="hover:text-yellow-500 duration-150 ease-in-out"
           href={itemHref2}>{itemName2}</a
         >
       </li>
-      <li class="md:mx-3 md:px-3 md:py-0 py-3">
+      <li class="py-2">
         <!-- have deals/ROUTE BE EQUAL TO AN ANY TYPE IN THE API -->
         <a
           class="hover:text-yellow-500 duration-150 ease-in-out"
-          href="/deals/all?index=0&brand=any">Deals</a
+          href="/deals/all?index=0&brand=any&s=">Deals</a
         >
       </li>
-      <li class="md:mx-3 md:px-3 md:py-0 py-3">
+      <li class="py-2">
         <!-- have deals/ROUTE BE EQUAL TO AN ANY TYPE IN THE API -->
         <a
           class="hover:text-yellow-500 duration-150 ease-in-out"
-          href="/api">Api</a
+          href="/api">Api</a>
+      </li>
+    </ul>
+    <div class="my-3 w-52 border-2 border-dashed border-yellow-500"></div>
+    <ul>
+      <li class="font-Expose py-3 text-3xl text-yellow-500 duration-150 ease-in-out">
+        Products
+      </li>
+      <li
+        class="py-3 cursor-pointer hover:text-yellow-500 duration-150 ease-in-out"
+      >
+        <a href="/deals/computers?index=0&brand=any&s=">Computers</a>
+      </li>
+      <li
+        class="py-3 cursor-pointer hover:text-yellow-500 duration-150 ease-in-out"
+      >
+        <a href="/deals/monitors?index=0&brand=any&s=">Monitors</a>
+      </li>
+      <li class="py-3 cursor-pointer hover:text-yellow-500 duration-150 ease-in-out">
+            <a href="/deals/computer_components?index=0&brand=any&s=">Computer Components</a>
+      </li>
+      <li
+        class="py-3 cursor-pointer hover:text-yellow-500 duration-150 ease-in-out"
+      >
+        <a href="/deals/all?index=0&brand=any&s=">All</a>
+      </li>
+    </ul>
+  </div>
+
+  <!--                            MEDIUM SCREEN NAV LIST                                    -->
+
+    <ul
+      class="md:inline-flex hidden h-fit w-fit text-2xl text-center {navBg}">
+      <li class="md:hidden block text-3xl md:mx-3 md:px-3 md:py-0 py-3 text-yellow-500">Menu</li>
+      <li class="mx-3 px-3">
+        <a
+          class="hover:text-yellow-500 duration-150 ease-in-out"
+          href={itemHref1}>{itemName1}</a
         >
+      </li>
+      <li class="mx-3 px-3">
+        <a
+          class="hover:text-yellow-500 duration-150 ease-in-out"
+          href={itemHref2}>{itemName2}</a
+        >
+      </li>
+      <li class="mx-3 px-3">
+        <a
+          class="hover:text-yellow-500 duration-150 ease-in-out"
+          href="/deals/all?index=0&brand=any&s=">Deals</a
+        >
+      </li>
+      <li class="mx-3 px-3">
+        <a
+          class="hover:text-yellow-500 duration-150 ease-in-out"
+          href="/api">Api</a>
       </li>
       <button
         on:click={toggleCategories}
-        class="md:mx-3 md:px-3 md:py-0 py-3 cursor-pointer text-3xl hover:text-yellow-500 duration-150 ease-in-out"
+        class="mx-3 px-3 cursor-pointer text-3xl hover:text-yellow-500 duration-150 ease-in-out"
       >
-        <ion-icon class="visible md:block hidden" name="apps-sharp" />
-        <p class="md:hidden block">Categories</p>
+        <ion-icon class="visible" name="apps-sharp" />
       </button>
     </ul>
 
     <ul
-      class="block fixed py-3 top-0 left-0 h-screen md:w-[25vw] w-[50vw] md:text-4xl text-3xl text-center shadow-md shadow-black {navBg} {categoriesListTranslateClasses}"
+      class="block fixed py-3 top-0 left-0 h-screen w-[25vw] text-4xl text-center shadow-md shadow-black {navBg} {categoriesListTranslateClasses}"
     >
-      <li class="md:mx-3 md:px-3 py-3 text-yellow-500 duration-150 ease-in-out">
+      <li class="mx-3 px-3 py-3 text-yellow-500 duration-150 ease-in-out">
         Products
       </li>
       <li
-        class="md:mx-3 md:px-3 py-3 cursor-pointer hover:text-yellow-500 duration-150 ease-in-out"
+        class="mx-3 px-3 py-3 cursor-pointer hover:text-yellow-500 duration-150 ease-in-out"
       >
-        <a href="/deals/computers?index=0&brand=any">Computers</a>
+        <a href="/deals/computers?index=0&brand=any&s=">Computers</a>
       </li>
       <li
-        class="md:mx-3 md:px-3 py-3 cursor-pointer hover:text-yellow-500 duration-150 ease-in-out"
+        class="mx-3 px-3 py-3 cursor-pointer hover:text-yellow-500 duration-150 ease-in-out"
       >
-        <a href="/deals/monitors?index=0&brand=any">Monitors</a>
+        <a href="/deals/monitors?index=0&brand=any&s=">Monitors</a>
+      </li>
+      <li class="mx-3 px-3 py-3 cursor-pointer hover:text-yellow-500 duration-150 ease-in-out">
+        <a href="/deals/computer_components?index=0&brand=any&s">Computer Components</a>
       </li>
       <li
-        class="md:mx-3 md:px-3 py-3 cursor-pointer hover:text-yellow-500 duration-150 ease-in-out"
+        class="mx-3 px-3 py-3 cursor-pointer hover:text-yellow-500 duration-150 ease-in-out"
       >
-        <a href="/headlines/WORLD%20NEWS">Other</a>
+        <a href="/deals/all?index=0&brand=any&s=">All</a>
       </li>
     </ul>
   </div>
+
+
   <div class="flex justify-center items-center {navPadding}">
     <Input
       placeholder="Search For Page Product Here"

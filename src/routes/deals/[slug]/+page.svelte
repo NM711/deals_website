@@ -4,7 +4,7 @@
   import { goto } from "$app/navigation";
   import Dropdown from "$lib/buttons/dropdown.svelte";
   export let data;
-  $: ({ data, index, slug, brand } = data);
+  $: ({ data, index, search, slug, brand } = data);
 
   let endReached = false;
 
@@ -15,8 +15,11 @@
   }
 </script>
 
-<header class="col-span-4 mt-36 text-center font-Expose bg-Onyx-Color p-3">
+<header class="col-span-4 mt-36 text-center font-Expose">
   <h1 class="md:text-6xl text-5xl text-yellow-500">{slug.toUpperCase()}</h1>
+    {#if search.length > 0}
+        <h2 class="text-3xl text-yellow-500 my-3">Searched: {search}</h2>
+    {/if}
   <h2 class="text-2xl text-white my-5 font-Bespoke">Page Number {index}</h2>
 </header>
 
@@ -32,7 +35,7 @@
       second="Acer"
       third="Lenovo"
       fourth="Newegg"
-      on:change={(ev) => goto(`?index=${index}&brand=${ev.target.value}`)}
+      on:change={(ev) => goto(`?index=${index}&brand=${ev.target.value}&s=`)}
     />
   </div>
 </section>
@@ -61,7 +64,7 @@
         buttonText="Previous Page {index - 1}"
         buttonFont="font-Bespoke"
         buttonSize="fit"
-        on:click={() => goto(`?index=${index - 1}&brand=${brand}`)}
+        on:click={() => goto(`?index=${index - 1}&brand=${brand}&s=${search}`)}
       />
     </span>
   {/if}
@@ -72,7 +75,7 @@
         buttonText="Next Page {index + 1}"
         buttonFont="font-Bespoke"
         buttonSize="fit"
-        on:click={() => goto(`?index=${index + 1}&brand=${brand}`)}
+        on:click={() => goto(`?index=${index + 1}&brand=${brand}&s=${search}`)}
       />
     </span>
   {/if}

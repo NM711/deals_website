@@ -6,7 +6,7 @@
         <div class="flex flex-col justify-center items-center absolute z-30 w-full">
             <h1 class="md:text-6xl text-4xl my-3 md:translate-x-12 translate-x-3">Deal Gatherer</h1>
             <h2 class="md:text-4xl text-2xl my-3 md:translate-x-12 translate-x-3 text-white hover:text-yellow-500 duration-300 ease-in-out underline decoration-yellow-500 decoration-4 hover:no-underline">
-                <a href="/deals/computers?index=0&brand=any">
+                <a href="/deals/computers?index=0&brand=any&s=">
                     Find the best deals today!
                 </a>
             </h2>

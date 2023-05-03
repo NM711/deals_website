@@ -8,7 +8,8 @@
 textOrLogo="Deal Gatherer"
 navFont="font-Expose"
 itemHref1="/"
-itemHref2="/about"
+itemName2="FAQ"
+itemHref2="/faq"
 />
 
 <section class="grid grid-cols-4 h-full gap-3">
@@ -24,8 +25,11 @@ itemHref2="/about"
         box-sizing: border-box;
     }
     :global(html){
-		background: #232526; /* fallback for old browsers */
-  		background: -webkit-linear-gradient(to right, #232526, #414345); /* Chrome 10-25, Safari 5.1-6 */
-  		background: linear-gradient(to right, #232526, #414345); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: radial-gradient(circle, #333333 0%, #1a1a1a 100%);
+        background-color: #1A1A1A;
+        scroll-behavior: smooth;
+    }
+    :global(ion-icon){
+        visibility: visible;
     }
 </style>
