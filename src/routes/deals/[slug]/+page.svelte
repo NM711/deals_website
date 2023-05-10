@@ -16,7 +16,7 @@
 </script>
 
 <header class="col-span-4 mt-36 text-center font-Expose">
-  <h1 class="md:text-6xl text-5xl text-yellow-500">{slug.toUpperCase()}</h1>
+  <h1 class="md:text-6xl text-5xl text-yellow-500 break-words">{slug.replace("_", " ").toUpperCase()}</h1>
     {#if search.length > 0}
         <h2 class="text-3xl text-yellow-500 my-3">Searched: {search}</h2>
     {/if}
